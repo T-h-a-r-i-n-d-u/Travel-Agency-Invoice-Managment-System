@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        GN HOLIDAYS
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="../js/invoice.js"></script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a class="navbar-brand" style="color: #f1f7fe; margin-left: 30px" href="#">
+            <!--        <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
+            GN HOLIDAYS
+        </a>
+    </div>
+    <div class="form-inline my-2 my-lg-0 mr-auto d-flex flex-row">
+        <input class="mr-2 form-control mr-sm-2" type="search" placeholder="Search"  style="margin-right: 5px" aria-label="Search" id="seachBySo">
+        <button class="mr-2 btn btn-primary my-2 my-sm-0 seachc" style="margin-right: 10px" type="submit" onclick="seachBySo()">Search</button>
+    </div>
+
+        <div class="round" style="margin-right: 30px" >
+            <button type="button" class="btn btn-secondary" onclick="toggleUserForm()">ADD USER</button>
+        </div>
+</nav>
+<div class="container" id="userForm" style="display:none;">
+    <div class="mb-1 col-9">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="example@gmail.com">
+    </div>
+    <div class="mb-1 col-9">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="..................">
+    </div>
+    <div class="mb-1 col-9">
+        <label for="role" class="form-label">Role</label>
+        <select class="form-select" aria-label=".form-select-lg example" id="role">
+            <option value='ROLE_ADMIN'>Admin</option>
+            <option value='ROLE_SALES'>Sales Person</option>
+            <option value='ROLE_ACCOUNTANT'>Accountant</option>
+        </select>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="saveUser()">Insert User</button>
+</div>
+<div>
+<h5 class="text-center mt-1"><strong>INVOICE MANAGEMENT SYSTEM</strong></h5>
+<div class="text-center  scrollable-body">
+
+    <table class="table  table-bordered text-center mt-2">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">SO</th>
+            <th scope="col">INVOICE</th>
+            <th scope="col">CUSTOMER</th>
+            <th scope="col">SUPPLE</th>
+            <th scope="col">AMOUNT</th>
+            <th scope="col">R/N</th>
+            <th scope="col">PV</th>
+            <th scope="col">TICKET NO</th>
+            <th scope="col">SALES ID</th>
+            <th scope="col">TC ID</th>
+            <th scope="col">STATUS</th>
+            <th scope="col">COST</th>
+            <th scope="col">XO</th>
+            <th scope="col">PAID SUPPLIE</th>
+            <th scope="col">REMARK</th>
+        </tr>
+        </thead>
+        <tbody id="invoiceTable">
+
+        </tbody>
+
+    </table>
+</div>
+
+
+<div class="box border p-3 m-4">
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="text"  class="form-control" id="date" placeholder="Date">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="so" class="form-label">SO</label>
+                    <input type="text" class="form-control" id="so" placeholder="SO_Number">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="invoice_no" class="form-label " >Invoice Number</label>
+                    <input type="text"  class="form-control" id="invoice_no" placeholder="Invoice_Number">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="customer" class="form-label">Customer</label>
+                    <input type="text" class="form-control" id="customer" placeholder="Customer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <!-- Second Row -->
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="supplie" class="form-label">Supplie</label>
+                    <input type="text" class="form-control" id="supplie" placeholder="Supplie">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="text" class="form-control" id="amount" placeholder="Amount">
+            </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="rn" class="form-label">R/N</label>
+                    <input type="text" class="form-control" id="rn" placeholder="R/N">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="pv" class="form-label">PV</label>
+                    <input type="text" class="form-control" id="pv" placeholder="PV">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="ticket_no" class="form-label">Ticket No</label>
+                    <input type="text" class="form-control" id="ticket_no" placeholder="Ticket_No">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="sales_ID" class="form-label">SALES ID</label>
+                    <select class="form-select" aria-label=".form-select-lg example" id="sales_ID">
+                        <option value='null'>null</option>
+                        <option value='Gayan_Perera'>Gayan Perera</option>
+                        <option value='Indewari_Wijesinghe'>Indewari Wijesinghe</option>
+                        <option value='Michelle_Gunathilaka'>Michelle Gunathilaka</option>
+                        <option value='Nayana_Nilanthi'>Nayana Nilanthi</option>
+                        <option value='Prasad_Katugampala'>Prasad Katugampala</option>
+                        <option value='Pubudu_Nayanakantha'>Pubudu Nayanakantha</option>
+                        <option value='Rasanjika_Kalpage'>Rasanjika Kalpage</option>
+                        <option value='Ruwan_De_Saram'>Ruwan De Saram</option>
+                        <option value='Dilip_Silva'>Dilip Silva</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                <label for="tc_ID" class="form-label">TC ID</label>
+                <select class="form-select" aria-label=".form-select-lg example" id="tc_ID">
+                    <option value='null'>null</option>
+                    <option value='Gayan_Perera'>Gayan Perera</option>
+                    <option value='Indewari_Wijesinghe'>Indewari Wijesinghe</option>
+                    <option value='Michelle_Gunathilaka'>Michelle Gunathilaka</option>
+                    <option value='Nayana_Nilanthi'>Nayana Nilanthi</option>
+                    <option value='Prasad_Katugampala'>Prasad Katugampala</option>
+                    <option value='Pubudu_Nayanakantha'>Pubudu Nayanakantha</option>
+                    <option value='Rasanjika_Kalpage'>Rasanjika Kalpage</option>
+                    <option value='Ruwan_De_Saram'>Ruwan De Saram</option>
+                    <option value='Dilip_Silva'>Dilip Silva</option>
+                </select>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="status" class="form-label ">Status :</label>
+                    <br>
+                    <label class="switch">
+                        <input type="checkbox"  id="status">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <!-- Second Row -->
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="cost" class="form-label">Cost</label>
+                    <input type="text" class="form-control" id="cost" placeholder="Cost">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="xo" class="form-label">XO</label>
+                    <input type="text" class="form-control" id="xo" placeholder="XO">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="paid_supplie" class="form-label">Paid Supplie</label>
+                    <input type="text" class="form-control" id="paid_supplie" placeholder="Paid Supplie">
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="mb-3">
+                    <label for="remark" class="form-label">Remark</label>
+                    <input type="text" class="form-control" id="remark" placeholder="Remark">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-between">
+    <div class="col-md-3 mb-2">
+        <button type="button" class="btn btn-primary" onclick="saveInvoice()">Insert Invoice</button>
+    </div>
+    <div class="col-md-3 mb-2">
+        <button type="button" class="btn btn-secondary" onclick="updateInvoice()">Update Invoice</button>
+    </div>
+    <div class="col-md-3 mb-2">
+        <button type="button" class="btn btn-danger" onclick="deleteInvoice()">Delete Invoice</button>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
